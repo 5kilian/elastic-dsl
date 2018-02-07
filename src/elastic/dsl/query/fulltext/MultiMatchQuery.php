@@ -36,10 +36,10 @@ class MultiMatchQuery extends MatchQuery {
      * a boolean query from the provided text.
      *
      * @param array $fields
-     * @param mixed $value
+     * @param mixed $query
      */
-    public function __construct($fields, $value) {
-        parent::__construct('', $value);
+    public function __construct($fields, $query) {
+        parent::__construct('', $query);
     }
 
     public function toArray() {
