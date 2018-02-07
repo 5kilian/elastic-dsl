@@ -2,6 +2,7 @@
 
 use elastic\dsl\query\LeafQuery;
 
+
 /**
  * The high-level full text queries are usually used for running
  * full text queries on full text fields like the body of an email.
@@ -14,6 +15,13 @@ use elastic\dsl\query\LeafQuery;
 abstract class FullTextQuery extends LeafQuery {
 
     protected $query_type = null;
+
+    /**
+     * The actual query to be parsed.
+     *
+     * @var mixed
+     */
+    public $query;
 
     /**
      * The operator flag can be set to or or and to control
@@ -95,5 +103,20 @@ abstract class FullTextQuery extends LeafQuery {
      * @var bool
      */
     public $auto_generate_synonyms_phrase_query = true;
+
+    public function toArray() {
+        $query = [ 'query' => $this->query ];
+
+        if ($this->operator !== 'or') $query['operator'] = $this->operator;
+        if (isset($this->minimum_should_match)) $query['minimum_should_match'] = $this->minimum_should_match;
+        if (isset($this->analyzer)) $query['analyzer'] = $this->analyzer;
+        if ($this->lenient) $query['lenient'] = $this->lenient;
+        if (isset($this->fuzziness)) $query['fuzziness'] = $this->fuzziness;
+        if (isset($this->prefix_length)) $query['prefix_length'] = $this->prefix_length;
+        if (isset($this->max_expansion)) $query['max_expansion'] = $this->max_expansion;
+        if (!$this->fuzzy_transpositions) $query['fuzzy_transpositions'] = $this->fuzzy_transpositions;
+
+        return $query;
+    }
 
 }

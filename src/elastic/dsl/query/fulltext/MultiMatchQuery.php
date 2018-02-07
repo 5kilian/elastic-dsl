@@ -6,7 +6,7 @@
  *
  * @package elastic\dsl\query\fulltext
  */
-class MultiMatchQuery extends MatchQuery {
+class MultiMatchQuery extends FullTextQuery {
 
     protected $query_type = 'multi_match';
 
@@ -35,22 +35,22 @@ class MultiMatchQuery extends MatchQuery {
      * provided is analyzed and the analysis process constructs
      * a boolean query from the provided text.
      *
+     * @param string $query
      * @param array $fields
-     * @param mixed $query
      */
-    public function __construct($fields, $query) {
-        parent::__construct('', $query);
+    public function __construct($query, $fields = []) {
+        $this->query = $query;
+        $this->fields = $fields;
     }
 
     public function toArray() {
         $query = parent::toArray();
 
-        $query['query'][$this->query_type] = $query['query'][$this->query_type][$this->field];
-        $query['query'][$this->query_type]['fields'] = $this->fields;
-        if ($this->type !== 'best_fields') $query['query'][$this->query_type]['type'] = $this->type;
-        if (isset($this->tie_breaker)) $query['query'][$this->query_type]['tie_breaker'] = $this->tie_breaker;
+        $query['fields'] = $this->fields;
+        if ($this->type !== 'best_fields') $query['type'] = $this->type;
+        if (isset($this->tie_breaker)) $query['tie_breaker'] = $this->tie_breaker;
 
-        return $query;
+        return [ "query" => [ $this->query_type => $query ] ];
     }
 
 }
