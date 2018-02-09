@@ -1,15 +1,22 @@
 {
-    "name": "timkilian/elastic-query-builder",
+    "name": "timkilian/elastic-dsl",
+    "type": "library",
     "description": "A query builder for Elasticsearch",
     "license": "MIT",
     "authors": [
         {
             "name": "Tim Kilian",
-            "email": "mail@timkilian.pl"
+            "email": "mail@timkilian.pl",
+            "homepage": "http://timkilian.pl",
+            "role": "Developer"
         }
     ],
+    "keywords": ["elasticsearch", "query"],
+    "homepage": "https://github.com/5kilian/elastic-dsl",
     "version": "0.0.1",
-    "require": {},
+    "require": {
+
+    },
     "require-dev": {
         "phpunit/phpunit": "7.0.0"
     },

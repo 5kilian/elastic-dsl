@@ -2,15 +2,14 @@
 
 A DSL-Query builder for Elasticsearch
 
-## Future usage
+## Feature usage
 ```php
 use elastic\dsl\query\QueryBuilder;
 use elastic\dsl\query\fulltext\QueryStringQuery;
 
-$query = new QueryBuilder();
-
-$query->addTerm("user", "kimchy");
-$query->addShouldQuery(new QueryStringQuery('*', 'quick brown fox'));
+$query = (new QueryBuilder())
+    ->addTerm("user", "kimchy")
+    ->addShouldQuery(new QueryStringQuery('quick brown fox'));
 $query->orderBy("user", "DESC");
 $query->limit(15);
 
@@ -32,6 +31,10 @@ curl_close($curl);
  + Aggregation-builder
  + Mapping-builder
  + Suggest-builder
+
+## Documentation
+
+ + [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html)
 
 ## Licence 
 

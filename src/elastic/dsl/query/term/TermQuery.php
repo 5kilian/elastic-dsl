@@ -3,7 +3,7 @@
 
 /**
  * Find documents which contain the exact term specified in the field specified.
- * 
+ *
  * @package elastic\dsl\query\term
  */
 class TermQuery extends TermLevelQuery {
