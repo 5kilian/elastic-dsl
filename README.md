@@ -2,7 +2,7 @@
 
 A DSL-Query builder for Elasticsearch
 
-## Feature usage
+## Future usage
 ```php
 use elastic\dsl\query\QueryBuilder;
 use elastic\dsl\query\fulltext\QueryStringQuery;
