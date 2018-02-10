@@ -2,7 +2,8 @@
 
 
 /**
- *
+ * Find documents where the field specified contains values
+ * (dates, numbers, or strings) in the range specified.
  *
  * @package elastic\dsl\query\term
  */
